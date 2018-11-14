@@ -3,15 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^4.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-fontawesome": "^1.6.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-simple-sidenav": "^1.0.1",
+    "react-slick": "^0.23.2",
+    "react-transition-group": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev-serv": "json-server --watch db.json --port 3004",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"npm run dev-serv\" \"npm start\""
   },
   "eslintConfig": {
     "extends": "react-app"
