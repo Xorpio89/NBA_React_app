@@ -33,7 +33,9 @@ class NewsList extends Component {
 
     axios.get(`${URL}/articles?_start=${start}&_end=${end}`).then(res => {
       this.setState({
-        items: [...this.state.items, ...res.data]
+        items: [...this.state.items, ...res.data],
+        start,
+        end
       });
     });
   };
@@ -58,7 +60,7 @@ class NewsList extends Component {
             key={i}
           >
             <div>
-              <div className="newslist_item">
+              <div className="newsList_item">
                 <Link to={`/articles/${item.id}`}>
                   <CardInfo
                     teams={this.state.teams}
@@ -69,6 +71,39 @@ class NewsList extends Component {
                 </Link>
               </div>
             </div>
+          </CSSTransition>
+        ));
+        break;
+      case "cardMain":
+        template = this.state.items.map((item, i) => (
+          <CSSTransition
+            classNames={{
+              enter: "newsList_wrapper",
+              enterActive: "newsList_wrapper_enter"
+            }}
+            timeout={500}
+            key={i}
+          >
+            <Link to={`/articles/${item.id}`}>
+              <div className="flex_wrapper">
+                <div
+                  className="left"
+                  style={{
+                    background: `url(/images/articles/${item.image})`
+                  }}
+                >
+                  <div />
+                </div>
+                <div className="right">
+                  <CardInfo
+                    teams={this.state.teams}
+                    team={item.team}
+                    date={item.date}
+                  />
+                  <h2>{item.title}</h2>
+                </div>
+              </div>
+            </Link>
           </CSSTransition>
         ));
         break;
